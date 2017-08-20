@@ -1,20 +1,20 @@
 $(function () {
-    var maximum, mininum, saut;
+    var maximum, mininum, saut, result;
     var json = [{
         "text": "username",
         "placeholder": "Votre nom utilisateur"
     },
     {
-        "password": "password"
+        "password": "mot_de_passe"
     },
     {
         "email": "email"
     },
     {
-        "url": "Votre URL"
+        "url": "votre_URL"
     },
     {
-        "tel": "Numero de telephone"
+        "tel": "Numero_de_telephone"
     },
     {
         "number": "nombre",
@@ -80,17 +80,46 @@ $(function () {
     
     $.each(json, function(index, data){
         if(data.text) {
-            $(".gf").append("<div class='form-group'><label>"+ data.text +"</label> <input type='text' name='"+ data.text + "' class='form-control'>");
+            if(result = replaced(data.text)){
+                 $(".gf").append("<div class='form-group'><label>"+ result +"</label> <input type='text' name='"+ data.text + "' class='form-control'>");
+            }else{
+                 $(".gf").append("<div class='form-group'><label>"+ ucfirst(data.text) +"</label> <input type='text' name='"+ data.text + "' class='form-control'>");
+            }
+           
         }else if(data.password){
-            $(".gf").append("<div class='form-group'><label>"+ data.password +"</label><input type='password' name='"+ data.password +"' class='form-control'>");
+            if(result = replaced(data.password)){
+                $(".gf").append("<div class='form-group'><label>"+ result +"</label><input type='password' name='"+ data.password +"' class='form-control'>");
+            }else{
+                $(".gf").append("<div class='form-group'><label>"+ ucfirst(data.password) +"</label><input type='password' name='"+ data.password +"' class='form-control'>");
+            }
+            
         }else if(data.email){
-            $(".gf").append("<div class='form-group'><label>"+ data.email +"</label><input type='email' name='"+ data.email +"' class='form-control'>");
+            if(result = replaced(data.email)){
+                $(".gf").append("<div class='form-group'><label>"+ result +"</label><input type='email' name='"+ data.email +"' class='form-control'>");
+            }else{
+                $(".gf").append("<div class='form-group'><label>"+ ucfirst(data.email) +"</label><input type='email' name='"+ data.email +"' class='form-control'>");
+            }
+            
         }else if(data.url){
-            $(".gf").append("<div class='form-group'><label>"+ data.url +"</label><input type='url' name='"+ data.url +"' class='form-control'>");
+            if(result = replaced(data.url)){
+                $(".gf").append("<div class='form-group'><label>"+ result +"</label><input type='url' name='"+ data.url +"' class='form-control'>");
+            }else{
+                $(".gf").append("<div class='form-group'><label>"+ ucfirst(data.url) +"</label><input type='url' name='"+ data.url +"' class='form-control'>");
+            }
+            
         }else if(data.tel){
-            $(".gf").append("<div class='form-group'><label>"+ data.tel +"</label><input type='tel' name='"+ data.tel +"' class='form-control'>");
+            if(result = replaced(data.tel)){
+                $(".gf").append("<div class='form-group'><label>"+ result +"</label><input type='tel' name='"+ data.tel +"' class='form-control'>");
+            }else{
+                $(".gf").append("<div class='form-group'><label>"+ ucfirst(data.tel) +"</label><input type='tel' name='"+ data.tel +"' class='form-control'>");
+            }
+            
         }else if(data.number){
-            $(".gf").append("<div class='form-group'><label>"+ data.number +"</label><input type='number' id='id_"+data.number+"' min='' max='' step='' name='"+ data.number +"' class='form-control'>");
+            if(result = replaced(data.number)){
+                $(".gf").append("<div class='form-group'><label>"+ result +"</label><input type='number' id='id_"+data.number+"' min='' max='' step='' name='"+ data.number +"' class='form-control'>");
+            }else{
+                $(".gf").append("<div class='form-group'><label>"+ ucfirst(data.number) +"</label><input type='number' id='id_"+data.number+"' min='' max='' step='' name='"+ data.number +"' class='form-control'>");
+            }
             
             if(data.max){
                $("#id_"+data.number).attr('max', data.max);
@@ -105,8 +134,12 @@ $(function () {
             }
             
         }else if(data.range){
-             $(".gf").append("<div class='form-group'><label>"+ data.range +"</label><input type='range' id='id_"+data.range+"' min='' max='' step='' name='"+ data.range +"' class='form-control'>");
-            
+            if(result = replaced(data.range)){
+                 $(".gf").append("<div class='form-group'><label>"+ result +"</label><input type='range' id='id_"+data.range+"' min='' max='' step='' name='"+ data.range +"' class='form-control'>");
+            }else{
+                 $(".gf").append("<div class='form-group'><label>"+ ucfirst(data.range) +"</label><input type='range' id='id_"+data.range+"' min='' max='' step='' name='"+ data.range +"' class='form-control'>");
+            }
+                        
             if(data.max){
                $("#id_"+data.range).attr('max', data.max);
             }
@@ -119,28 +152,61 @@ $(function () {
                 $("#id_"+data.range).attr('step', data.step);
             }
         }else if(data.color){
-             $(".gf").append("<div class='form-group'><label>"+ data.color +"</label><input type='color' name='"+ data.color +"' class='form-control'>");
+            if(result = replaced(data.color)){
+                $(".gf").append("<div class='form-group'><label>"+ result +"</label><input type='color' name='"+ data.color +"' class='form-control'>");
+            }else{
+                $(".gf").append("<div class='form-group'><label>"+ ucfirst(data.color) +"</label><input type='color' name='"+ data.color +"' class='form-control'>");
+            }
+             
         }
         else if(data.textarea){
-            var sentence = data.textarea;
-            var result;
-            if(result = replaced(sentence)){
+            if(result = replaced(data.textarea)){
                  $(".gf").append("<div class='form-group'><label>"+ result +"</label><textarea rows='8' name='"+ data.textarea +"' class='form-control'>");
             }else{
-                $(".gf").append("<div class='form-group'><label>"+ data.textarea +"</label><textarea rows='8' name='"+ data.textarea +"' class='form-control'>");
+                $(".gf").append("<div class='form-group'><label>"+ ucfirst(data.textarea) +"</label><textarea rows='8' name='"+ data.textarea +"' class='form-control'>");
             }
         }else if(data.date){
-             $(".gf").append("<div class='form-group'><label>"+ data.date +"</label><input type='date' name='"+ data.date +"' class='form-control'>");
+            if(result = replaced(data.date)){
+                $(".gf").append("<div class='form-group'><label>"+ result +"</label><input type='date' name='"+ data.date +"' class='form-control'>");
+            }else{
+                $(".gf").append("<div class='form-group'><label>"+ ucfirst(data.date) +"</label><input type='date' name='"+ data.date +"' class='form-control'>");
+            }
+             
         }else if(data.time){
-            $(".gf").append("<div class='form-group'><label>"+ data.time +"</label><input type='time' name='"+ data.time +"' class='form-control'>");
+            if(result = replaced(data.time)){
+                $(".gf").append("<div class='form-group'><label>"+ result +"</label><input type='time' name='"+ data.time +"' class='form-control'>");
+            }else{
+                $(".gf").append("<div class='form-group'><label>"+ ucfirst(data.time) +"</label><input type='time' name='"+ data.time +"' class='form-control'>");
+            }
+            
         }else if(data.week){
-            $(".gf").append("<div class='form-group'><label>"+ data.week +"</label><input type='week' name='"+ data.week +"' class='form-control'>");
+            if(result = replaced(data.week)){
+                 $(".gf").append("<div class='form-group'><label>"+ result +"</label><input type='week' name='"+ data.week +"' class='form-control'>");
+            }else{
+                 $(".gf").append("<div class='form-group'><label>"+ ucfirst(data.week) +"</label><input type='week' name='"+ data.week +"' class='form-control'>");
+            }
+           
         }else if(data.month){
-            $(".gf").append("<div class='form-group'><label>"+ data.month +"</label><input type='month' name='"+ data.month +"' class='form-control'>");
+            if(result = replaced(data.month)){
+                 $(".gf").append("<div class='form-group'><label>"+ result +"</label><input type='month' name='"+ data.month +"' class='form-control'>");
+            }else{
+                 $(".gf").append("<div class='form-group'><label>"+ ucfirst(data.month) +"</label><input type='month' name='"+ data.month +"' class='form-control'>");
+            }
+           
         }else if(data.datetime){
-            $(".gf").append("<div class='form-group'><label>"+ data.datetime +"</label><input type='datetime' name='"+ data.datetime +"' class='form-control'>");
+            if(result = replaced(data.datetime)){
+                 $(".gf").append("<div class='form-group'><label>"+ result +"</label><input type='datetime' name='"+ data.datetime +"' class='form-control'>");
+            }else{
+                 $(".gf").append("<div class='form-group'><label>"+ ucfirst(data.datetime) +"</label><input type='datetime' name='"+ data.datetime +"' class='form-control'>");
+            }
+           
         }else if(data.search){
-            $(".gf").append("<div class='form-group'><label>"+ data.search +"</label><input type='search' name='"+ data.search +"' class='form-control'>");
+            if(result = replaced(data.search)){
+                 $(".gf").append("<div class='form-group'><label>"+ result +"</label><input type='search' name='"+ data.search +"' class='form-control'>");
+            }else{
+                 $(".gf").append("<div class='form-group'><label>"+ ucfirst(data.search) +"</label><input type='search' name='"+ data.search +"' class='form-control'>");
+            }
+           
         }else if(data.checkbox){
             $(".gf").append("<div class='form-group'><div class='checkbox'><label><input type='checkbox' name='"+ data.checkbox +"'>"+data.checkbox);
         }else if(data.radio){
@@ -196,7 +262,7 @@ $(function () {
     });
     
     function replaced(str){
-        var result = str.replace(/_/, ' ');
+        var result = str.replace(/_/g, ' ');
         return ucfirst(result);
     }
     
