@@ -65,7 +65,7 @@ $(function () {
                    "select": "pays",
                    "options": ["ginée", "france", "allemagne", "usa"],
                    "selected": "allemagne"
-               },
+               }/*,
                {
                    "select": "pays",
                    "type": "1",
@@ -73,21 +73,21 @@ $(function () {
                    "Afrique": ["Guinée", "Senegal"],
                    "Europe": ["Allemagne", "Hollande"],
                    "Amerique": ["USA", "Brazil"]
-               }]
+               }*/]
     
     $.each(json, function(index, data){
         if(data.text) {
-            $(".gf").append("<input type='text' name='"+ data.text + "' class='form-cool'>");
+            $(".gf").append("<div class='form-group'><input type='text' name='"+ data.text + "' class='form-control'>");
         }else if(data.password){
-            $(".gf").append("<input type='password' name='"+ data.password +"' class='form-cool'>");
+            $(".gf").append("<div class='form-group'><input type='password' name='"+ data.password +"' class='form-control'>");
         }else if(data.email){
-            $(".gf").append("<input type='email' name='"+ data.email +"' class='form-cool'>");
+            $(".gf").append("<div class='form-group'><input type='email' name='"+ data.email +"' class='form-control'>");
         }else if(data.url){
-            $(".gf").append("<input type='url' name='"+ data.url +"' class='form-cool'>");
+            $(".gf").append("<div class='form-group'><input type='url' name='"+ data.url +"' class='form-control'>");
         }else if(data.tel){
-            $(".gf").append("<input type='tel' name='"+ data.tel +"' class='form-cool'>");
+            $(".gf").append("<div class='form-group'><input type='tel' name='"+ data.tel +"' class='form-control'>");
         }else if(data.number){
-            $(".gf").append("<input type='number' id='id_"+data.number+"' min='' max='' step='' name='"+ data.number +"' class='form-cool'>");
+            $(".gf").append("<div class='form-group'><input type='number' id='id_"+data.number+"' min='' max='' step='' name='"+ data.number +"' class='form-control'>");
             
             if(data.max){
                $("#id_"+data.number).attr('max', data.max);
@@ -102,7 +102,7 @@ $(function () {
             }
             
         }else if(data.range){
-             $(".gf").append("<input type='range' id='id_"+data.range+"' min='' max='' step='' name='"+ data.range +"' class='form-cool'>");
+             $(".gf").append("<div class='form-group'><input type='range' id='id_"+data.range+"' min='' max='' step='' name='"+ data.range +"' class='form-control'>");
             
             if(data.max){
                $("#id_"+data.range).attr('max', data.max);
@@ -116,32 +116,44 @@ $(function () {
                 $("#id_"+data.range).attr('step', data.step);
             }
         }else if(data.color){
-             $(".gf").append("<input type='color' name='"+ data.color +"' class='form-cool'>");
+             $(".gf").append("<div class='form-group'><input type='color' name='"+ data.color +"' class='form-control'>");
         }else if(data.date){
-             $(".gf").append("<input type='date' name='"+ data.date +"' class='form-cool'>");
+             $(".gf").append("<div class='form-group'><input type='date' name='"+ data.date +"' class='form-control'>");
         }else if(data.time){
-            $(".gf").append("<input type='time' name='"+ data.time +"' class='form-cool'>");
+            $(".gf").append("<div class='form-group'><input type='time' name='"+ data.time +"' class='form-control'>");
         }else if(data.week){
-            $(".gf").append("<input type='week' name='"+ data.week +"' class='form-cool'>");
+            $(".gf").append("<div class='form-group'><input type='week' name='"+ data.week +"' class='form-control'>");
         }else if(data.month){
-            $(".gf").append("<input type='month' name='"+ data.month +"' class='form-cool'>");
+            $(".gf").append("<div class='form-group'><input type='month' name='"+ data.month +"' class='form-control'>");
         }else if(data.datetime){
-            $(".gf").append("<input type='datetime' name='"+ data.datetime +"' class='form-cool'>");
+            $(".gf").append("<div class='form-group'><input type='datetime' name='"+ data.datetime +"' class='form-control'>");
         }else if(data.search){
-            $(".gf").append("<input type='search' name='"+ data.search +"' class='form-cool'>");
+            $(".gf").append("<div class='form-group'><input type='search' name='"+ data.search +"' class='form-control'>");
         }else if(data.checkbox){
-            $(".gf").append("<input type='checkbox' name='"+ data.checkbox +"' class='form-cool'>");
+            $(".gf").append("<div class='form-group'><input type='checkbox' name='"+ data.checkbox +"' class='form-control'>");
         }else if(data.radio){
-            $(".gf").append("<input type='radio' name='"+ data.radio +"' class='form-cool'>");
+            $(".gf").append("<div class='form-group'><input type='radio' name='"+ data.radio +"' class='form-control'>");
         }else if(data.select){
             if(data.type){
-                if(data.type == "1"){
-                    var options;
+                /*if(data.type == "1"){
+                    //var options;
                     var debut = "<select name='"+ data.select +"' id='id_"+ data.select+ "'>";
-                }
+                    if(data.group){
+                        var j=1;
+                        for (var i=0; i<data.group.length; i++){
+                            debut += "<optgroup label='"+ data.group[i] +"'>";
+                            for(var k=0; k<data.group[i].length; k++){
+                                debut += "<option value='"+data.group[i][k]+"'>"+data.group[i][k];
+                            }
+                        }
+                        $(".gf").append(debut);
+                    }else{
+                        console.log("veillez choisir les options du <select>");
+                    }
+                }*/
             }else{
                 var options;
-                var debut = "<select name='"+ data.select +"' id='id_"+ data.select+ "'>";
+                var debut = "<div class='form-group'><select name='"+ data.select +"' id='id_"+ data.select+ "'>";
                 if(data.options){
                     var j=1;
                     for (var i=0; i<data.options.length; i++){
@@ -163,11 +175,12 @@ $(function () {
                     var app = debut + options;
                     $(".gf").append(app);
                 }else{
-                    alert("vous devez choisir les éléments du select");
+                    console.log("vous devez choisir les éléments du select");
                 }
 
             }
         }
         
     });
+    $(".gf").append("<input type='submit' class='btn btn-info' value='Envoyer'/><input type='reset' class='btn btn-info' value='Reinitialiser'/>");
 });
