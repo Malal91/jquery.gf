@@ -1,7 +1,14 @@
 $(function () {
     var maximum, mininum, saut, result, slug=false, idFrom;
-    var regAccent = new RegExp('[ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ]', 'gi');
-    var regSpeciaux = new RegExp('[?,!@#%&*;()=+ {}\:._\'\\/"|²~`^^@]', 'gi');
+    var regAccentA = new RegExp('[ÀÁÂÃÄÅàáâãäå]', 'gi');
+    var regAccentO = new RegExp('[ÒÓÔÕÖØòóôõöø]', 'gi');
+    var regAccentE = new RegExp('[ÈÉÊËèéêë]', 'gi');
+    var regAccentC = new RegExp('[Çç]', 'gi');
+    var regAccentI = new RegExp('[ÌÍÎÏìíîï]', 'gi');
+    var regAccentU = new RegExp('[ÙÚÛÜùúûü]', 'gi');
+    var regAccentY = new RegExp('[ÿ]', 'gi');
+    var regAccentN = new RegExp('[Ññ]', 'gi');
+    var regSpeciaux = new RegExp('[?,!@#%&*;§$£()=+ {}\:._\'\\/"|²~`^^@]', 'gi');
     var json = [{
         "text": "username",
         "placeholder": "Votre nom utilisateur"
@@ -167,8 +174,7 @@ $(function () {
                 $(".gf").append("<div class='form-group'><label for='id_"+data.color+"'>"+ ucfirst(data.color) +"</label><input type='color' id='id_"+data.color+"' name='"+ data.color +"' class='form-control' required>");
             }
              
-        }
-        else if(data.textarea){
+        }else if(data.textarea){
             if(result = replaced(data.textarea)){
                  $(".gf").append("<div class='form-group'><label for='id_"+data.textarea+"'>"+ result +"</label><textarea id='id_"+data.textarea+"' rows='8' name='"+ data.textarea +"' class='form-control' placeholder='"+ result +"' required>");
             }else{
@@ -296,14 +302,14 @@ $(function () {
     
     $("#id_"+idFrom).keyup(function(e){
         var from = $("#id_"+idFrom).val();
-        var a = from.replace(regAccentA, 'aaaaaaaaaaaa');
-        var o = from.replace(regAccentO, 'oooooooooooo');
-        var e = from.replace(regAccentE, 'eeeeeeee');
-        var c = from.replace(regAccentC, 'cc');
-        var i = from.replace(regAccentI, 'iiiiiiii');
-        var u = from.replace(regAccentU, 'uuuuuuuu');
-        var y = from.replace(regAccentY, 'y');
-        var n = from.replace(regAccentN, 'nn');
+        from = from.replace(regAccentA, 'a');
+        from = from.replace(regAccentO, 'o');
+        from = from.replace(regAccentE, 'e');
+        from = from.replace(regAccentC, 'c');
+        from = from.replace(regAccentI, 'i');
+        from = from.replace(regAccentU, 'u');
+        from = from.replace(regAccentY, 'y');
+        from = from.replace(regAccentN, 'n');
         from = from.replace(regSpeciaux, '-');
         $("#id_slug").val(from);
     });
