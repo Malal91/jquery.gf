@@ -8,6 +8,7 @@ $(function () {
     var regAccentU = new RegExp('[ÙÚÛÜùúûü]', 'gi');
     var regAccentY = new RegExp('[ÿ]', 'gi');
     var regAccentN = new RegExp('[Ññ]', 'gi');
+    $('form').wrap("<div class='panel-body' />");
     var regSpeciaux = new RegExp('[?,!@#%&*;§$£()=+ {}\:._\'\\/"|²~`^^@]', 'gi');
     var json = [{
         "text": "username",
@@ -282,11 +283,16 @@ $(function () {
 
             }
         }else if(data.slug){
-            $(".gf").append("<div class='form-group'><label for='id_"+data.slug+"'>"+ ucfirst(data.slug) +"</label><input type='text' id='id_"+data.slug+"' name='"+ data.slug +"' class='form-control' placeholder='"+ ucfirst(data.slug) +"' required>");
-            slug = true;
-            idFrom = data.from;
+            if(data.visible && (data.visible=='false' || data.visible=='False')){
+                $(".gf").append("<div class='form-group' hidden><label for='id_"+data.slug+"'>"+ ucfirst(data.slug) +"</label><input type='text' id='id_"+data.slug+"' name='"+ data.slug +"' class='form-control' placeholder='"+ ucfirst(data.slug) +"' required>");
+                slug = true;
+                idFrom = data.from;
+            }else{
+                 $(".gf").append("<div class='form-group'><label for='id_"+data.slug+"'>"+ ucfirst(data.slug) +"</label><input type='text' id='id_"+data.slug+"' name='"+ data.slug +"' class='form-control' placeholder='"+ ucfirst(data.slug) +"' required>");
+                slug = true;
+                idFrom = data.from;
+            }
         }
-        
     });
     
     function replaced(str){
