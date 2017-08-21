@@ -1,5 +1,7 @@
 $(function () {
     var maximum, mininum, saut, result, slug=false, idFrom;
+    var regAccent = new RegExp('[ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ]', 'gi');
+    var regSpeciaux = new RegExp('[?,!@#%&*;()=+ {}\:._\'\\/"|²~`^^@]', 'gi');
     var json = [{
         "text": "username",
         "placeholder": "Votre nom utilisateur"
@@ -294,8 +296,16 @@ $(function () {
     
     $("#id_"+idFrom).keyup(function(e){
         var from = $("#id_"+idFrom).val();
+        var a = from.replace(regAccentA, 'aaaaaaaaaaaa');
+        var o = from.replace(regAccentO, 'oooooooooooo');
+        var e = from.replace(regAccentE, 'eeeeeeee');
+        var c = from.replace(regAccentC, 'cc');
+        var i = from.replace(regAccentI, 'iiiiiiii');
+        var u = from.replace(regAccentU, 'uuuuuuuu');
+        var y = from.replace(regAccentY, 'y');
+        var n = from.replace(regAccentN, 'nn');
+        from = from.replace(regSpeciaux, '-');
         $("#id_slug").val(from);
-        //alert(String.fromCharCode(e.which));
     });
     
     $(".gf").append("<input type='submit' class='btn btn-info' value='Envoyer'/> <input type='reset' class='btn btn-info' value='Reinitialiser'/>");
