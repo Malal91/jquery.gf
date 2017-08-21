@@ -1,5 +1,5 @@
 $(function () {
-    var maximum, mininum, saut, result;
+    var maximum, mininum, saut, result, slug=false, idFrom;
     var json = [{
         "text": "username",
         "placeholder": "Votre nom utilisateur"
@@ -273,6 +273,10 @@ $(function () {
                 }
 
             }
+        }else if(data.slug){
+            $(".gf").append("<div class='form-group'><label id='id_"+data.slug+"'>"+ ucfirst(data.slug) +"</label><input type='text' id='id_"+data.slug+"' name='"+ data.slug +"' class='form-control' placeholder='"+ ucfirst(data.slug) +"' required>");
+            slug = true;
+            idFrom = data.from;
         }
         
     });
@@ -287,6 +291,11 @@ $(function () {
             return $0.toUpperCase();
         });
     }
+    
+    $("#id_"+idFrom).keypress(function(e){
+        //$("id_slug").val(e);
+        alert(e);
+    });
     
     $(".gf").append("<input type='submit' class='btn btn-info' value='Envoyer'/> <input type='reset' class='btn btn-info' value='Reinitialiser'/>");
 });
