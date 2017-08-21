@@ -113,12 +113,12 @@ $(function () {
             if(result = replaced(data.email)){
                 $(".gf").append("<div class='form-group'><label for='id_"+data.email+"'>"+ result +"</label><input type='email' id='id_"+data.email+"' name='"+ data.email +"' class='form-control' placeholder='"+ result +"' required>");
             }else{
-                $(".gf").append("<div class='form-group'><label id='id_"+data.email+"'>"+ ucfirst(data.email) +"</label><input type='email' id='id_"+data.email+"' name='"+ data.email +"' class='form-control' placeholder='"+ ucfirst(data.email) +"' required>");
+                $(".gf").append("<div class='form-group'><label for='id_"+data.email+"'>"+ ucfirst(data.email) +"</label><input type='email' id='id_"+data.email+"' name='"+ data.email +"' class='form-control' placeholder='"+ ucfirst(data.email) +"' required>");
             }
             
         }else if(data.url){
             if(result = replaced(data.url)){
-                $(".gf").append("<div class='form-group'><label id='id_"+data.url+"'>"+ result +"</label><input type='url' id='id_"+data.url+"' name='"+ data.url +"' class='form-control' placeholder='"+ result +"' required>");
+                $(".gf").append("<div class='form-group'><label for='id_"+data.url+"'>"+ result +"</label><input type='url' id='id_"+data.url+"' name='"+ data.url +"' class='form-control' placeholder='"+ result +"' required>");
             }else{
                 $(".gf").append("<div class='form-group'><label for='id_"+data.url+"'>"+ ucfirst(data.url) +"</label><input type='url' id='id_"+data.url+"' name='"+ data.url +"' class='form-control' placeholder='"+ ucfirst(data.url) +"' required>");
             }
@@ -134,7 +134,7 @@ $(function () {
             if(result = replaced(data.number)){
                 $(".gf").append("<div class='form-group'><label for='id_"+data.number+"'>"+ result +"</label><input type='number' id='id_"+data.number+"' min='' max='' step='' name='"+ data.number +"' class='form-control' placeholder='"+ result +"' required>");
             }else{
-                $(".gf").append("<div class='form-group'><label for='id_"+data.number+"'>"+ ucfirst(data.number) +"</label><input type='number' id='id_"+data.number+"' id='id_"+data.number+"' min='' max='' step='' name='"+ data.number +"' class='form-control' placeholder='"+ ucfirst(data.number) +"' required>");
+                $(".gf").append("<div class='form-group'><label for='id_"+data.number+"'>"+ ucfirst(data.number) +"</label><input type='number' id='id_"+data.number+"' min='' max='' step='' name='"+ data.number +"' class='form-control' placeholder='"+ ucfirst(data.number) +"' required>");
             }
             
             if(data.max){
@@ -151,9 +151,9 @@ $(function () {
             
         }else if(data.range){
             if(result = replaced(data.range)){
-                 $(".gf").append("<div class='form-group'><label for='id_"+data.range+"'>"+ result +"</label><input type='range' id='id_"+data.range+"' id='id_"+data.range+"' min='' max='' step='' name='"+ data.range +"' class='form-control'  required>");
+                 $(".gf").append("<div class='form-group'><label for='id_"+data.range+"'>"+ result +"</label><input type='range' id='id_"+data.range+"' min='' max='' step='' name='"+ data.range +"' class='form-control'  required>");
             }else{
-                 $(".gf").append("<div class='form-group'><label for='id_"+data.range+"'>"+ ucfirst(data.range) +"</label><input type='range' id='id_"+data.range+"' id='id_"+data.range+"' min='' max='' step='' name='"+ data.range +"' class='form-control' required>");
+                 $(".gf").append("<div class='form-group'><label for='id_"+data.range+"'>"+ ucfirst(data.range) +"</label><input type='range' id='id_"+data.range+"' min='' max='' step='' name='"+ data.range +"' class='form-control' required>");
             }
                         
             if(data.max){
@@ -255,7 +255,7 @@ $(function () {
                 }*/
             }else{
                 var options;
-                var debut = "<div class='form-group'><label for='id_"+data.select+"'>"+ data.select +"</label><select name='"+ data.select +"' id='id_"+ data.select+ "' class='form-control' required>";
+                var debut = "<div class='form-group'><label for='id_"+data.select+"'>"+ ucfirst(data.select) +"</label><select name='"+ data.select +"' id='id_"+ data.select+ "' class='form-control' required>";
                 if(data.options){
                     var j=1;
                     for (var i=0; i<data.options.length; i++){
