@@ -274,7 +274,7 @@ $(function () {
 
             }
         }else if(data.slug){
-            $(".gf").append("<div class='form-group'><label id='id_"+data.slug+"'>"+ ucfirst(data.slug) +"</label><input type='text' id='id_"+data.slug+"' name='"+ data.slug +"' class='form-control' placeholder='"+ ucfirst(data.slug) +"' required>");
+            $(".gf").append("<div class='form-group'><label for='id_"+data.slug+"'>"+ ucfirst(data.slug) +"</label><input type='text' id='id_"+data.slug+"' name='"+ data.slug +"' class='form-control' placeholder='"+ ucfirst(data.slug) +"' required>");
             slug = true;
             idFrom = data.from;
         }
@@ -292,9 +292,10 @@ $(function () {
         });
     }
     
-    $("#id_"+idFrom).keypress(function(e){
-        //$("id_slug").val(e);
-        alert(e);
+    $("#id_"+idFrom).keyup(function(e){
+        var from = $("#id_"+idFrom).val();
+        $("#id_slug").val(from);
+        //alert(String.fromCharCode(e.which));
     });
     
     $(".gf").append("<input type='submit' class='btn btn-info' value='Envoyer'/> <input type='reset' class='btn btn-info' value='Reinitialiser'/>");
