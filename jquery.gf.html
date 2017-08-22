@@ -6,99 +6,12 @@
         <link rel="stylesheet" href="css/jquery.gf.css"/>
     </head>
     <body>
-        <div class="main">
-            <form class="gf"></form>
-        </div>
+        <div class="panel-gf"></div>
+        
         <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="js/jquery.gf.js"></script>
         <script type="text/javascript">
-            $(function(){
-                    var json = [{
-            "text": "username",
-            "placeholder": "Votre nom utilisateur"
-        },
-        {
-            "password": "mot_de_passe"
-        },
-        {
-            "email": "email"
-        },
-        {
-            "url": "votre_URL"
-        },
-                    {
-                        "text": "titre"
-                    },
-        {
-            "tel": "Numero_de_telephone"
-        },
-                    {
-                        "slug": "slug",
-                        "from": "titre"
-                    },
-        {
-            "number": "nombre",
-            "min" : "4",
-            "max" : "10",
-            "step" : "2"
-        },
-        {
-            "number": "chiffre",
-            "min" : "3",
-            "max" : "9",
-            "step" : "3"
-        },
-        {
-            "range": "curseur",
-             "min" : "50",
-            "max" : "100",
-            "step" : "10"
-        },
-        {
-            "color": "couleur"
-        },
-                   {
-                       "date": "date"
-                   },
-                   {
-                       "time": "temps"
-                   },
-                   {
-                       "week": "semaine" 
-                   },
-                   {
-                       "month": "mois"
-                   },
-                   {
-                       "datetime": "datetime"
-                   },
-                   {
-                       "search": "recherche"
-                   },
-                   {
-                       "checkbox": "choix"
-                   },
-                   {
-                       "radio": "age"
-                   },
-                    {
-                        "textarea": "votre_texte"
-                    },
-                   {
-                       "select": "pays",
-                       "options": ["ginée", "france", "allemagne", "usa"],
-                       "selected": "allemagne"
-                   }/*,
-                   {
-                       "select": "pays",
-                       "type": "1",
-                       "group": ["Afrique", "Europe", "Amerique"],
-                       "Afrique": ["Guinée", "Senegal"],
-                       "Europe": ["Allemagne", "Hollande"],
-                       "Amerique": ["USA", "Brazil"]
-                   }*/]
-                $('form').gf(json);
-            });
+            $(".panel-gf").gf()
         </script>
     </body>
 </html>
