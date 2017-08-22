@@ -12,10 +12,12 @@
         <script type="text/javascript" src="js/jquery.gf.js"></script>
         <script type="text/javascript">
             $(document).ready(function($){
-                 $(".panel-gf").gf({
-                connexion: 'true',
-                     email: 'votre email'
-            });
+                $(".panel-gf").gf({
+                    connexion: 'true',
+                    username: 'nom utilisateur',
+                    action: 'jquery.gf.html',
+                    method: 'post'
+                });
             });
            
         </script>
