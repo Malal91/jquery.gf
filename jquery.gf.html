@@ -11,7 +11,13 @@
         <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="js/jquery.gf.js"></script>
         <script type="text/javascript">
-            $(".panel-gf").gf()
+            $(document).ready(function($){
+                 $(".panel-gf").gf({
+                connexion: 'true',
+                     email: 'votre email'
+            });
+            });
+           
         </script>
     </body>
 </html>
