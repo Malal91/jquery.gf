@@ -3,20 +3,23 @@
     <head>
         <meta charset="utf-8">
         <title>Plugin generateur de formulaire</title>
-        <link rel="stylesheet" href="css/bootstrap.css"/>
-        <link rel="stylesheet" href="css/basic.css"/>
-        <link rel="stylesheet" href="css/custom.css"/>
+        <link rel="stylesheet" href="css/jquery.gf.css"/>
     </head>
     <body>
-        <div class="main">
-            <div class="panel panel-info">
-                <div class="panel-heading">BASIC FORM</div>
-                <div class="panel-body">
-                    <form class="gf"></form>
-                </div>
-            </div>
-        </div>
+        <div class="panel-gf"></div>
+        
         <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="js/jquery.gf.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function($){
+                $(".panel-gf").gf({
+                    connexion: 'true',
+                    username: 'nom utilisateur',
+                    action: 'jquery.gf.html',
+                    method: 'post'
+                });
+            });
+           
+        </script>
     </body>
 </html>
