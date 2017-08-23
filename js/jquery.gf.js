@@ -1,6 +1,7 @@
 (function(){
     $.fn.gf = function(options){
         var settings = $.extend({
+            text: null,
             connexion: null,
             inscription: null,
             newsletter: null,
@@ -30,22 +31,20 @@
                 if(settings.passwordGenerate && settings.passwordGenerate == 'true'){
                      $(".gf").append("<div class='form-group'><label for='id_nom'>Nom</label> <input type='text' id='id_nom' name='nom' class='form-gf' placeholder='Nom' required>");
                     $(".gf").append("<div class='form-group'><label for='id_prenom'>Prenom</label> <input type='text' id='id_prenom' name='prenom' class='form-gf' placeholder='Prenom' required>");
-                    $(".gf").append("<div class='form-group'><label for='id_email'>Email</label> <input type='text' id='id_email' name='email' class='form-gf' placeholder='Email' required>");
-                    
-                    $(".gf").append("<input type='submit' class='btn btn-info' value=\"S'inscrire\"/> <input type='reset' class='btn btn-info' value='Reinitialiser'/>");
+                    $(".gf").append("<div class='form-group'><label for='id_email'>Email</label> <input type='text' id='id_email' name='email' class='form-gf' placeholder='Email' required>");                    
                 }else{
                      $(".gf").append("<div class='form-group'><label for='id_nom'>Nom</label> <input type='text' id='id_nom' name='nom' class='form-gf' placeholder='Nom' required>");
                     $(".gf").append("<div class='form-group'><label for='id_prenom'>Prenom</label> <input type='text' id='id_prenom' name='prenom' class='form-gf' placeholder='Prenom' required>");
                     $(".gf").append("<div class='form-group'><label for='id_email'>Email</label> <input type='text' id='id_email' name='email' class='form-gf' placeholder='Email' required>");
                     $(".gf").append("<div class='form-group'><label for='id_password'>Mot de passe</label> <input type='password' id='id_password' name='password' class='form-gf' placeholder='Mot de passe' required>");
                      $(".gf").append("<div class='form-group'><label for='id_confirm_password'>Confirmez le mot de passe</label> <input type='password' id='id_confirm_password' name='confirm_password' class='form-gf' placeholder='Confirmez le mot de passe' required>");
-                    
-                    $(".gf").append("<input type='submit' class='btn btn-info' value=\"S'inscrire\"/> <input type='reset' class='btn btn-info' value='Reinitialiser'/>");
                 }
             }else if(settings.newsletter && settings.newsletter == 'true'){
                 $(".gf").append("<div class='form-group'><label for='id_newsletter'>Newsletter</label> <input type='email' id='id_newsletter' name='newsletter' class='form-gf' placeholder='Votre email' required>");
-                    
-                $(".gf").append("<input type='submit' class='btn btn-info' value='Souscrire'/>");
+            }else if(settings.text){
+                for(var i = 0; i< settings.text.length; i++){
+                     $(".gf").append("<div class='form-group'><label for='id_"+replacedSpace(settings.text[i])+"'>"+replacedUnderscore(settings.text[i])+"</label> <input type='text' id='id_"+replacedSpace(settings.text[i])+"' name='"+replacedSpace(settings.text[i])+"' class='form-gf' placeholder='"+ucfirst(settings.text[i])+"' required>");
+                }
             }
             
             if(settings.action){
@@ -54,6 +53,12 @@
             if(settings.method){
                 $(".gf").attr("method", settings.method);
             }
+            if(settings.newsletter && settings.newsletter == 'true'){
+                $(".gf").append("<input type='submit' class='btn btn-info' value='Souscrire'/>");
+            }else{
+                $(".gf").append("<input type='submit' class='btn btn-info' value=\"S'inscrire\"/> <input type='reset' class='btn btn-info' value='Reinitialiser'/>");
+            }
+            
             return this;
         });
         
@@ -64,7 +69,7 @@
         
         function replacedSpace(str){
             var result = str.replace(/ /g, '_');
-            return result;
+            return result.toLocaleLowerCase();
         }
 
         function ucfirst(str){
