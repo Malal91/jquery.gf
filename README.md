@@ -1,9 +1,9 @@
-#jquery.gf.js
-##generateur de formulaire automatique
+# jquery.gf.js
+## generateur de formulaire automatique
 
-####jquery.gf.js est un plugin de generateur de formulaire automatique selon vos besoin dans vos pages web, sa mise en place est très simple et pratique
+#### jquery.gf.js est un plugin de generateur de formulaire automatique selon vos besoin dans vos pages web, sa mise en place est très simple et pratique
 
-##Au préalable il faut inclure le framework jquery dans vos projet(page web) pour le bon fonction du plugin jquery.gf.js
+## Au préalable il faut inclure le framework jquery dans vos projet(page web) pour le bon fonction du plugin jquery.gf.js
 
 ### 1. Inclure jquery dans la page ou s'executera le plugin
 ```javascript
