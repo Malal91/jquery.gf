@@ -2,6 +2,7 @@
     $.fn.gf = function(options){
         var settings = $.extend({
             text: null,
+            password: null,
             connexion: null,
             inscription: null,
             newsletter: null,
@@ -44,6 +45,10 @@
             }else if(settings.text){
                 for(var i = 0; i< settings.text.length; i++){
                      $(".gf").append("<div class='form-group'><label for='id_"+replacedSpace(settings.text[i])+"'>"+replacedUnderscore(settings.text[i])+"</label> <input type='text' id='id_"+replacedSpace(settings.text[i])+"' name='"+replacedSpace(settings.text[i])+"' class='form-gf' placeholder='"+ucfirst(settings.text[i])+"' required>");
+                }
+            }else if(settings.password){
+                for(var i = 0; i< settings.password.length; i++){
+                     $(".gf").append("<div class='form-group'><label for='id_"+replacedSpace(settings.password[i])+"'>"+replacedUnderscore(settings.password[i])+"</label> <input type='password' id='id_"+replacedSpace(settings.password[i])+"' name='"+replacedSpace(settings.password[i])+"' class='form-gf' placeholder='"+ucfirst(settings.password[i])+"' required>");
                 }
             }
             
