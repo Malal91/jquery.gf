@@ -13,7 +13,8 @@
         <script type="text/javascript">
             $(document).ready(function($){
                 $(".panel-gf").gf({
-                    password: ["mot de passe"],
+                    order: ["nom.text", "prenom.text", "votre_email.email", "pays.select", "date_du_jour.date","mot_de_passe.password", "capitale.select"],
+                    select: ["France.pays", "Guinée.pays", "Allemagne.pays", "Conakry.capitale"],
                     action: 'jquery.gf.html',
                     method: 'post'
                 });

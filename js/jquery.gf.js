@@ -1,14 +1,12 @@
 (function(){
     $.fn.gf = function(options){
         var settings = $.extend({
-            text: null,
-            password: null,
+            select: null,
             connexion: null,
             inscription: null,
             newsletter: null,
-            email: null,
             passwordGenerate: null,
-            username: null,
+            order: null,
             action: null,
             method: null
         }, options);
@@ -42,16 +40,29 @@
                 }
             }else if(settings.newsletter && settings.newsletter == 'true'){
                 $(".gf").append("<div class='form-group'><label for='id_newsletter'>Newsletter</label> <input type='email' id='id_newsletter' name='newsletter' class='form-gf' placeholder='Votre email' required>");
-            }else if(settings.text){
-                for(var i = 0; i< settings.text.length; i++){
-                     $(".gf").append("<div class='form-group'><label for='id_"+replacedSpace(settings.text[i])+"'>"+replacedUnderscore(settings.text[i])+"</label> <input type='text' id='id_"+replacedSpace(settings.text[i])+"' name='"+replacedSpace(settings.text[i])+"' class='form-gf' placeholder='"+ucfirst(settings.text[i])+"' required>");
-                }
-            }else if(settings.password){
-                for(var i = 0; i< settings.password.length; i++){
-                     $(".gf").append("<div class='form-group'><label for='id_"+replacedSpace(settings.password[i])+"'>"+replacedUnderscore(settings.password[i])+"</label> <input type='password' id='id_"+replacedSpace(settings.password[i])+"' name='"+replacedSpace(settings.password[i])+"' class='form-gf' placeholder='"+ucfirst(settings.password[i])+"' required>");
+            }
+            if(settings.order && !(settings.connexion && settings.inscription && settings.newsletter)){
+                for(var i = 0; i< settings.order.length; i++){
+                    var element = settings.order[i];
+                    var elements = element.split('.');
+                    var optionelement = '';
+                    var options = '';
+                    if(elements[1] == "select"){
+                        if(settings.select){
+                             for(var j=0; j<settings.select.length; j++){
+                                 optionelement = settings.select[j].split('.');
+                                 if(optionelement[1] == elements[0]){
+                                     options += "<option>"+optionelement[0]+"</option>";
+                                 }
+                             }
+                             $(".gf").append("<div class='form-group'><label for='id_"+replacedSpace(elements[0])+"'>"+replacedUnderscore(elements[0])+"</label> <select id='id_"+replacedSpace(elements[0])+"' name='"+replacedSpace(elements[0])+"' class='form-gf' required>"+options+"</select>");
+                        }
+                    }else{
+                        $(".gf").append("<div class='form-group'><label for='id_"+replacedSpace(elements[0])+"'>"+replacedUnderscore(elements[0])+"</label> <input type='"+elements[1]+"' id='id_"+replacedSpace(elements[0])+"' name='"+replacedSpace(elements[0])+"' class='form-gf' placeholder='"+replacedUnderscore(elements[0])+"' required>");
+                    }
                 }
             }
-            
+                       
             if(settings.action){
                 $(".gf").attr("action", settings.action);
             }
@@ -95,6 +106,5 @@
             var regSpeciaux = new RegExp('[?,!@#%&*;§$£()=+ {}\:._\'\\/"|²~`^^@]', 'gi');
         }
     };
-    
     
 }(jQuery));
