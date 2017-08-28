@@ -13,9 +13,10 @@
         <script type="text/javascript">
             $(document).ready(function($){
                 $(".panel-gf").gf({
-                    order: ["nom.text", "prenom.text", "votre_email.email", "pays.select", "date_du_jour.date","mot_de_passe.password", "capitale.select"],
-                    post: ["capitale", "capitale.php"],
-                    select: ["France.pays", "Guinée.pays", "Allemagne.pays", "Conakry.capitale"],
+                    order: ["nom.text", "prenom.text", "votre_email.email", "slug.prenom", "pays.select", "date_du_jour.date","mot_de_passe.password", "capitale.select"],
+                    post: ["capitale/pays"],
+                    requestpost: ["capitale.php/pays.php"],
+                    options: ["France.pays", "Guinée.pays", "Allemagne.pays", "Conakry.capitale"],
                     action: 'jquery.gf.html',
                     method: 'post'
                 });

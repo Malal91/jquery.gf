@@ -1,7 +1,9 @@
 (function(){
     $.fn.gf = function(options){
         var settings = $.extend({
-            select: null,
+            options: null,
+            getslug: null,
+            requestpost: null,
             connexion: null,
             inscription: null,
             newsletter: null,
@@ -49,38 +51,58 @@
                     var optionelement = '';
                     var options = '';
                     if(elements[1] == "select"){
-                        if(settings.select){
-                             for(var j=0; j<settings.select.length; j++){
-                                 optionelement = settings.select[j].split('.');
+                        if(settings.options){
+                             for(var j=0; j<settings.options.length; j++){
+                                 optionelement = settings.options[j].split('.');
                                  if(optionelement[1] == elements[0]){
-                                     options += "<option>"+optionelement[0]+"</option>";
+                                     options += "<option value='"+optionelement[0]+"'>"+optionelement[0]+"</option>";
                                  }
                              }
                              $(".gf").append("<div class='form-group'><label for='id_"+replacedSpace(elements[0])+"'>"+replacedUnderscore(elements[0])+"</label> <select id='id_"+replacedSpace(elements[0])+"' name='"+replacedSpace(elements[0])+"' class='form-gf' required>"+options+"</select>");
                         }
                         
-                        if(settings.post){
-                            var selection='', url='';
-                            if(elements[0] == settings.post[0]){
-                                selection = settings.post[0];
-                                url = settings.post[1];
+                        if(settings.post && settings.requestpost){
+                            var selection = '', url = '';
+                            for(var k=0; k<settings.post.length; k++){
+                                selection=settings.post[k].split('/');
+                            }
                             
-                                $.post(url,
-                                       {
+                            for(var l=0; l<settings.requestpost.length; l++){
+                                url = settings.requestpost[l].split('/');
+                            }
+                            
+                            if(selection.length == url.length){
+                                for(var m = 0; m<selection.length; m++){
+                                     if(elements[0] == selection[m]){
+                                    
+                                        $.post(url[m],
+                                               {
 
-                                },
-                                function(data){
-                                    $(".gf").append("<div class='form-group'><label for='id_"+replacedSpace(elements[0])+"'>"+replacedUnderscore(elements[0])+"</label> <select id='id_"+replacedSpace(elements[0])+"' name='"+replacedSpace(elements[0])+"' class='form-gf' required>"+options+"</select>");
+                                        },
+                                        function(data){
+                                            $(".gf").append("<div class='form-group'><label for='id_"+replacedSpace(elements[0])+"'>"+replacedUnderscore(elements[0])+"</label> <select id='id_"+replacedSpace(elements[0])+"' name='"+replacedSpace(elements[0])+"' class='form-gf' required>"+data+"</select>");
 
-                                });
+                                        });
+                                    }
+                                }
+                               
                             }
                         }
+                    }else if(elements[0] == 'slug'){
+                        $(".gf").append("<div class='form-group'><label for='id_"+replacedSpace(elements[0])+"'>"+replacedUnderscore(elements[0])+"</label> <input type='text' id='id_"+replacedSpace(elements[0])+"' name='"+replacedSpace(elements[0])+"' class='form-gf' placeholder='"+replacedUnderscore(elements[0])+"' required>");
+                        settings.getslug = elements[1];
                     }else{
                         $(".gf").append("<div class='form-group'><label for='id_"+replacedSpace(elements[0])+"'>"+replacedUnderscore(elements[0])+"</label> <input type='"+elements[1]+"' id='id_"+replacedSpace(elements[0])+"' name='"+replacedSpace(elements[0])+"' class='form-gf' placeholder='"+replacedUnderscore(elements[0])+"' required>");
                     }
                 }
             }
-                       
+            
+            if(settings.getslug){
+                $("#id_"+settings.getslug).keyup(function(e){
+                    $("#id_slug").val(regex($("#id_"+settings.getslug).val()));
+                });
+            }
+                                   
             if(settings.action){
                 $(".gf").attr("action", settings.action);
             }
@@ -90,7 +112,7 @@
             if(settings.newsletter && settings.newsletter == 'true'){
                 $(".gf").append("<input type='submit' class='btn btn-info' value='Souscrire'/>");
             }else{
-                $(".gf").append("<input type='submit' class='btn btn-info' value=\"S'inscrire\"/> <input type='reset' class='btn btn-info' value='Reinitialiser'/>");
+                $(".gf").append("<input type='submit' class='btn btn-info' value=\"Soumettre\"/> <input type='reset' class='btn btn-info' value='Reinitialiser'/>");
             }
             
             return this;
@@ -122,6 +144,16 @@
             var regAccentY = new RegExp('[ÿ]', 'gi');
             var regAccentN = new RegExp('[Ññ]', 'gi');
             var regSpeciaux = new RegExp('[?,!@#%&*;§$£()=+ {}\:._\'\\/"|²~`^^@]', 'gi');
+            str = str.replace(regAccentA, 'a');
+            str = str.replace(regAccentO, 'o');
+            str = str.replace(regAccentE, 'e');
+            str = str.replace(regAccentC, 'c');
+            str = str.replace(regAccentI, 'i');
+            str = str.replace(regAccentU, 'u');
+            str = str.replace(regAccentY, 'y');
+            str = str.replace(regAccentN, 'n');
+            str = str.replace(regSpeciaux, '-');
+            return str;
         }
     };
     
