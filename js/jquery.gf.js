@@ -7,6 +7,7 @@
             newsletter: null,
             passwordGenerate: null,
             order: null,
+            post: null,
             action: null,
             method: null
         }, options);
@@ -56,6 +57,23 @@
                                  }
                              }
                              $(".gf").append("<div class='form-group'><label for='id_"+replacedSpace(elements[0])+"'>"+replacedUnderscore(elements[0])+"</label> <select id='id_"+replacedSpace(elements[0])+"' name='"+replacedSpace(elements[0])+"' class='form-gf' required>"+options+"</select>");
+                        }
+                        
+                        if(settings.post){
+                            var selection='', url='';
+                            if(elements[0] == settings.post[0]){
+                                selection = settings.post[0];
+                                url = settings.post[1];
+                            
+                                $.post(url,
+                                       {
+
+                                },
+                                function(data){
+                                    $(".gf").append("<div class='form-group'><label for='id_"+replacedSpace(elements[0])+"'>"+replacedUnderscore(elements[0])+"</label> <select id='id_"+replacedSpace(elements[0])+"' name='"+replacedSpace(elements[0])+"' class='form-gf' required>"+options+"</select>");
+
+                                });
+                            }
                         }
                     }else{
                         $(".gf").append("<div class='form-group'><label for='id_"+replacedSpace(elements[0])+"'>"+replacedUnderscore(elements[0])+"</label> <input type='"+elements[1]+"' id='id_"+replacedSpace(elements[0])+"' name='"+replacedSpace(elements[0])+"' class='form-gf' placeholder='"+replacedUnderscore(elements[0])+"' required>");
